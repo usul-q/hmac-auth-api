@@ -131,11 +131,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_THROTTLE_CLASSES': [
-        'example.throttles.BurstRateThrottle',
-        'example.throttles.SustainedRateThrottle'
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'burst': '60/min',
-        'sustained': '1000/day'
+        'anon': '100/day',
+        'user': '1000/day'
     }
 }
