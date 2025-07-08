@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-uo*!l-7$^!=fjjjqyoxntppv_%o48&y0m!9zg$3k#q%8=q@+)j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hmac-auth-api.onrender.com']
 
 
 # Application definition
