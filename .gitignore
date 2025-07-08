@@ -1,0 +1,16 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Env and secrets
+.env
+*.env
+env/
+api_key.env
+
+# OS files
+.DS_Store
+
+# Django/migrations (if any)
+*.sqlite3
+*.log
