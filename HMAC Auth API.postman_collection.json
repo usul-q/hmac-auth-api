@@ -1,0 +1,463 @@
+{
+	"info": {
+		"_postman_id": "a6aa6a88-ff84-41fa-96ff-5ed132e00118",
+		"name": "HMAC Auth API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46190405",
+		"_collection_link": "https://quydang-6260000.postman.co/workspace/Quy-Dang's-Workspace~5bee653e-e5d3-4abf-837b-9b95ff593502/collection/46190405-a6aa6a88-ff84-41fa-96ff-5ed132e00118?action=share&source=collection_link&creator=46190405"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"Mateus\",\n  \"last_name\": \"Silva\",\n  \"username\": \"mateuss\",\n  \"email\": \"mateus.silva@example.br\",\n  \"password\": \"Mateus@2025\",\n  \"secret\": \"secert4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/register/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create another user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"Emily\",\n  \"last_name\": \"Johnson\",\n  \"username\": \"emilyj\",\n  \"email\": \"emily.johnson@example.com\",\n  \"password\": \"EmilySecure123!\",\n  \"secret\": \"secret2\"\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/register/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users - Public",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/users/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific user with id - Public",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/user/1",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with username and password",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "EmilySecure123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "emilyj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/login/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update email of a user - Authorized",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Mateus@2025",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "mateuss",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mateus.silva001@example.br\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/login/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Secret with public key and signature",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Public-Key",
+						"value": "c24dfab55407b82ce96826d1ff89df35",
+						"type": "text"
+					},
+					{
+						"key": "Signature",
+						"value": "27fcea359803ce636ba07007c166fb5ef65e7040a1b72c7cf255f645721445de",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/user/secret/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"user",
+						"secret",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Mateus@2025",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "mateuss",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/login/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/users/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "EmilySecure123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "emilyj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/login/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user - missing fields",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"Lukas\",\n  \"last_name\": \"Müller\",\n  \"email\": \"lukas.mueller@example.de\",\n  \"password\": \"LukasPass456#\",\n  \"secret\": \"secert1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/register/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Failed login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "LukasPass456#",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "lukasm",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"Lukas\",\n  \"last_name\": \"Müller\",\n  \"email\": \"lukas.mueller@example.de\",\n  \"password\": \"LukasPass456#\",\n  \"secret\": \"secert1\"\n}"
+				},
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/login/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User secret - Invalid signature",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Public-Key",
+						"value": "c24dfab55407b82ce96826d1ff89df35",
+						"type": "text"
+					},
+					{
+						"key": "Signature",
+						"value": "27fcea359803ce636ba07007c166fb5ef65e7040a1b72c7cf255f645721445da",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/user/secret/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"user",
+						"secret",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User secret - Missing header",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Public-Key",
+						"value": "c24dfab55407b82ce96826d1ff89df35",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://hmac-auth-api.onrender.com/user/secret/",
+					"protocol": "https",
+					"host": [
+						"hmac-auth-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"user",
+						"secret",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
