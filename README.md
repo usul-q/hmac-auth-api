@@ -1,6 +1,4 @@
-=======================================
 HMAC Auth Django API
-=======================================
 
 A secure Django REST API deployed on Render that includes:
 - User registration (/register/)
