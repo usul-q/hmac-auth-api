@@ -37,6 +37,8 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user._private_key = private_key
         return user
     
+
+    # Override the to_representation function to show the private_key once user is first registered
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         if hasattr(instance, '_private_key'):
